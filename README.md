@@ -19,4 +19,4 @@ java -jar target/base-1.0-SNAPSHOT.jar
 
 
 ## Links
-* Swagger: <http://tradefolio-hl.simbirsoft:8080/swagger-ui.html>
+* Swagger: <http://smarthome.simbirsoft:8080/swagger-ui.html>
