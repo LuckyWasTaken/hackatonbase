@@ -46,6 +46,17 @@ public class ScheduledTasks {
             smart.switchDevice("FRIDGE", true);
         else
             smart.switchDevice("FRIDGE", false);
+        
 
+    }
+     
+    public boolean detectFire(){
+        return (Double.parseDouble(smart.getStatusSensor("ROOM_TEMPERATURE"))>100)
+                &&(Double.parseDouble(smart.getStatusSensor("SMOKE"))>0);
+                
+    }
+    
+    public boolean  detectflood(){
+        return (Double.parseDouble(smart.getStatusSensor("WATER_LEAK"))>100);
     }
 }
