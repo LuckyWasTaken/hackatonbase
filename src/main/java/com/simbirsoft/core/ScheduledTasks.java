@@ -15,12 +15,6 @@ public class ScheduledTasks {
     
     @Scheduled(fixedRate = 10000)
     public void mainAction() {
-        if(Double.parseDouble(smart.getStatusSensor("DISTANCE"))<50)
-          smart.switchDevice("TV", true);
-       else
-         smart.switchDevice("TV",false); 
-        
-        
         //Loudspeakers Controls
         if(Double.parseDouble(smart.getStatusSensor("NOISE"))<50)
           smart.switchDevice("LOUDSPEAKERS", true);
