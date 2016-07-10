@@ -8,23 +8,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(value = "/housing")
+@RequestMapping(value = "/appliances")
 public class HousingController {
 
     @Autowired
     private SmarthomeService smart;
 
-    @RequestMapping(value = "/offall", method = RequestMethod.GET)
-    public String getVentilationStatus() {
-        smart.switchDevice("HOOVER", false);
-        smart.switchDevice("VENTILATION", false);
-        smart.switchDevice("FRIDGE", false);
-        smart.switchDevice("TV", false);
-        smart.switchDevice("MICROWAVE", false);
-        smart.switchDevice("LOUDSPEAKERS", false);
+    @RequestMapping(value = "/shutdown", method = RequestMethod.GET)
+    public String shutdown() {
+        smart.shutdown();
         return ("Done!");
     }
 
-    
+    @RequestMapping(value = "/restore", method = RequestMethod.GET)
+    public String restore() {
+        smart.restore();
+        return ("Done!");
+    }
 }
 

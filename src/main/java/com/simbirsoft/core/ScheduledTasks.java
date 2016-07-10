@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ScheduledTasks {
-
+    
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     @Autowired
     private SmarthomeService smart;

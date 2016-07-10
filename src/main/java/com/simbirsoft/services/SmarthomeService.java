@@ -14,15 +14,30 @@ public class SmarthomeService {
 
     private static final String baseUrl = "http://smarthome.simbirsoft:8080/";
     private static final String microserviceId = "f9c2064d47a671a3d0c6dec0eec6a9b9";
-    
+    private boolean offAllDevices = false; 
 
     public boolean switchDevice(String device, boolean status)
     {
+        if(!(offAllDevices & status))
         this.setValue(device, status);
 
         return true;
     }
-
+    
+    
+    public void restore() {
+        offAllDevices = false;
+    }
+    
+    public void shutdown(){
+        this.switchDevice("HOOVER", false);
+        this.switchDevice("VENTILATION", false);
+        this.switchDevice("FRIDGE", false);
+        this.switchDevice("TV", false);
+        this.switchDevice("MICROWAVE", false);
+        this.switchDevice("LOUDSPEAKERS", false);
+        offAllDevices = true;
+    }
     public String getStatusDevice(String device)
     {
         return this.getValue("devices", device);
