@@ -59,6 +59,6 @@ public class ScheduledTasks {
     }
     
     public boolean  detectflood(){
-        return (Double.parseDouble(smart.getStatusSensor("WATER_LEAK"))>100);
+        return (Double.parseDouble(smart.getStatusSensor("WATER_LEAK"))>1);
     }
 }
