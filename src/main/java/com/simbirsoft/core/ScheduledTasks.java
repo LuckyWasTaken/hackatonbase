@@ -14,6 +14,7 @@ public class ScheduledTasks {
     
     @Scheduled(fixedRate = 5000)
     public void mainAction() {
+        double distance = Double.parseDouble(smart.getStatusSensor("DISTANCE"));
         if (Double.parseDouble(smart.getStatusSensor("ELECTRICITY")) >= 12) {
             smart.restore();
             //Loudspeakers Controls
@@ -25,12 +26,12 @@ public class ScheduledTasks {
             Double smoke = Double.parseDouble(smart.getStatusSensor("SMOKE"));
             Double gaz_leak = Double.parseDouble(smart.getStatusSensor("GAZ_LEAK"));
 
-            if (Double.parseDouble(smart.getStatusSensor("DISTANCE")) < 50)
+            if (distance < 50)
                 smart.switchDevice("TV", true);
             else
                 smart.switchDevice("TV",false);
 
-            if (Double.parseDouble(smart.getStatusSensor("DISTANCE")) > 500)
+            if (distance > 500)
                 smart.switchDevice("HOOVER", true);
             else
                 smart.switchDevice("HOOVER", false);
@@ -42,7 +43,7 @@ public class ScheduledTasks {
                 smart.switchDevice("VENTILATION",false);
             }
         
-            if (Double.parseDouble(smart.getStatusSensor("DISTANCE")) < 20000)
+            if (distance < 20000)
                 smart.switchDevice("FRIDGE", true);
             else
                 smart.switchDevice("FRIDGE", false);
