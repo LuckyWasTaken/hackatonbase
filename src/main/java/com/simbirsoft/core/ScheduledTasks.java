@@ -48,9 +48,6 @@ public class ScheduledTasks {
             else
                 smart.switchDevice("FRIDGE", false);
 
-            
-
-            actionOnFire();
         }
         else {
             smart.shutdown();
