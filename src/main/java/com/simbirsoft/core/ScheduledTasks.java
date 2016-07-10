@@ -50,13 +50,15 @@ public class ScheduledTasks {
 
     }
      
-    public boolean detectFire(){
+    private boolean detectFire(){
         return (Double.parseDouble(smart.getStatusSensor("ROOM_TEMPERATURE"))>100)
                 &&(Double.parseDouble(smart.getStatusSensor("SMOKE"))>0);
                 
     }
     
-    public boolean  detectflood(){
-        return (Double.parseDouble(smart.getStatusSensor("WATER_LEAK"))>100);
+
+    private boolean  detectflood(){
+        return (Double.parseDouble(smart.getStatusSensor("WATER_LEAK"))>1);
+
     }
 }
