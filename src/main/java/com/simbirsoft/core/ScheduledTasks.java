@@ -13,7 +13,7 @@ public class ScheduledTasks {
     @Autowired
     private SmarthomeService smart;
     
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 10000)
     public void mainAction() {
 
         Double smoke = Double.parseDouble(smart.getStatusSensor("SMOKE"));
