@@ -13,7 +13,6 @@ import java.net.URI;
 @RestController
 @RequestMapping(value = "/room")
 public class RoomController {
-    private static final String baseUrl = "http://smarthome.simbirsoft:8080/";
 
     @Autowired
     private SmarthomeService smart;
