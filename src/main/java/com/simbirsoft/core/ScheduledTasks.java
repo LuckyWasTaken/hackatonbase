@@ -34,6 +34,11 @@ public class ScheduledTasks {
         } else {
             smart.switchDevice("VENTILATION",false);
         }
+        
+        if (Double.parseDouble(smart.getStatusSensor("DISTANCE")) < 20000)
+            smart.switchDevice("FRIDGE", true);
+        else
+            smart.switchDevice("FRIDGE", false);
 
     }
 }
