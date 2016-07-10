@@ -48,14 +48,12 @@ public class SmarthomeService {
 
         URI targetUri = UriComponentsBuilder.fromHttpUrl(baseUrl)
                 .path("devices/" + method)
+                .queryParam("microserviceId", microserviceId)
+                .queryParam("state", state)
                 .build()
                 .toUri();
 
-        MultiValueMap<String, String> request = new LinkedMultiValueMap<String, String>();
-        request.add("microserviceId", microserviceId);
-        request.add("state", state);
-
-        String result = new RestTemplate().postForObject(targetUri, request, String.class);
+        new RestTemplate().put(targetUri, String.class);
 
         return true;
     }
