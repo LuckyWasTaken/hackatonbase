@@ -35,6 +35,8 @@ public class ScheduledTasks {
 
         if (smoke > 0 || gaz_leak > 0) {
             smart.switchDevice("VENTILATION", true);
+            smart.callExternalService("FIRE_DEPARTMENT");
+
         } else {
             smart.switchDevice("VENTILATION",false);
         }

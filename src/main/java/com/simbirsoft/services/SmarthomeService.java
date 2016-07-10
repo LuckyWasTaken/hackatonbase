@@ -32,6 +32,23 @@ public class SmarthomeService {
         return this.getValue("sensors", sensor);
     }
 
+    public String getStatusExternalService(String service)
+    {
+        return this.getValue("services", service);
+    }
+
+    public boolean callExternalService(String service)
+    {
+        URI targetUri = UriComponentsBuilder.fromHttpUrl(baseUrl)
+                .path("services/" + service)
+                .build()
+                .toUri();
+
+        new RestTemplate().postForObject(targetUri, microserviceId, String.class);
+
+        return true;
+    }
+
     private String getValue(String type, String method)
     {
         URI targetUri = UriComponentsBuilder.fromHttpUrl(baseUrl)
