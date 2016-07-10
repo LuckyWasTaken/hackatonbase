@@ -15,20 +15,17 @@ public class FridgeController {
     private SmarthomeService smart;
 
     @RequestMapping(value = "/status", method = RequestMethod.GET)
-    public String getVentilationStatus() {
-
+    public String getFridgeStatus() {
         return smart.getStatusDevice("FRIDGE");
     }
 
     @RequestMapping(value = "/on", method = RequestMethod.GET)
-    public boolean getVentilationOn() {
-
+    public boolean getFridgeOn() {
         return smart.switchDevice("FRIDGE", true);
     }
 
     @RequestMapping(value = "/off", method = RequestMethod.GET)
-    public boolean getVentilationOff() {
-
+    public boolean getFridgeOff() {
         return smart.switchDevice("FRIDGE", false);
     }
 }
