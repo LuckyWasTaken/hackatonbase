@@ -4,10 +4,12 @@ import com.simbirsoft.services.SmarthomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by telik on 10.07.2016.
  */
+@RestController
 @RequestMapping(value = "/hv")
 public class HooverController {
     @Autowired
