@@ -51,7 +51,7 @@ public class ScheduledTasks {
             smart.shutdown();
         }
     }
-    @Scheduled(fixedRate = 120000) 
+    @Scheduled(fixedRate = 10000) 
     public void actionOnFire(){
 
         boolean is_fire = (Double.parseDouble(smart.getStatusSensor("ROOM_TEMPERATURE"))>100)
