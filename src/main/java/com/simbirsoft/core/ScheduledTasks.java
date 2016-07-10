@@ -68,7 +68,7 @@ public class ScheduledTasks {
         
     }
 
-    @Scheduled(fixedRate = 120000) 
+    @Scheduled(fixedRate = 15000) 
     public void actionOnFlood(){
         boolean is_flood = (Double.parseDouble(smart.getStatusSensor("WATER_LEAK"))>0);
         if (is_flood)
