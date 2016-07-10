@@ -14,11 +14,10 @@ public class ScheduledTasks {
     
     @Scheduled(fixedRate = 5000)
     public void mainAction() {
-        
         if (Double.parseDouble(smart.getStatusSensor("ELECTRICITY")) >= 12) {
             smart.restore();
             //Loudspeakers Controls
-            if (Double.parseDouble(smart.getStatusSensor("NOISE")) < 50)
+            if ((Double.parseDouble(smart.getStatusSensor("NOISE")) < 50)&&(Double.parseDouble(smart.getStatusSensor("DISTANCE")) < 50))
                 smart.switchDevice("LOUDSPEAKERS", true);
             else
                 smart.switchDevice("LOUDSPEAKERS",false);
