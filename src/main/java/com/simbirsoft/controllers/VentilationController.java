@@ -15,19 +15,19 @@ public class VentilationController {
     private SmarthomeService smart;
 
     @RequestMapping(value = "/status", method = RequestMethod.GET)
-    public String getTvStatus() {
+    public String getVentilationStatus() {
 
         return smart.getStatusDevice("VENTILATION");
     }
 
     @RequestMapping(value = "/on", method = RequestMethod.GET)
-    public boolean getTvOn() {
+    public boolean getVentilationOn() {
 
         return smart.switchDevice("VENTILATION", true);
     }
 
     @RequestMapping(value = "/off", method = RequestMethod.GET)
-    public boolean getTvOff() {
+    public boolean getVentilationOff() {
 
         return smart.switchDevice("VENTILATION", false);
     }

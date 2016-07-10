@@ -15,37 +15,6 @@ public class SmarthomeService {
     private static final String baseUrl = "http://smarthome.simbirsoft:8080/";
     private static final String microserviceId = "f9c2064d47a671a3d0c6dec0eec6a9b9";
 
-    public String getRoomTemp()
-    {
-        return this.getValue("sensors", "ROOM_TEMPERATURE");
-    }
-
-    public String getDist()
-    {
-        return this.getValue("sensors", "DISTANCE");
-    }
-
-    public String getSmoke()
-    {
-        return this.getValue("sensors", "SMOKE");
-    }
-
-    public String getNoise()
-    {
-        return this.getValue("sensors", "NOISE");
-    }
-
-    public boolean switchTV(boolean on)
-    {
-        this.setValue("TV", on);
-        return true;
-    }
-
-    public String getTVStatus()
-    {
-        return this.getValue("devices", "TV");
-    }
-
     public boolean switchDevice(String device, boolean status)
     {
         this.setValue(device, status);

@@ -17,18 +17,18 @@ public class TvController {
     @RequestMapping(value = "/status", method = RequestMethod.GET)
     public String getTvStatus() {
 
-        return smart.getTVStatus();
+        return smart.getStatusDevice("TV");
     }
 
     @RequestMapping(value = "/on", method = RequestMethod.GET)
     public boolean getTvOn() {
 
-        return smart.switchTV(true);
+        return smart.switchDevice("TV", true);
     }
 
     @RequestMapping(value = "/off", method = RequestMethod.GET)
     public boolean getTvOff() {
 
-        return smart.switchTV(false);
+        return smart.switchDevice("TV", false);
     }
 }

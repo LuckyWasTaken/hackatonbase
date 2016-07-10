@@ -13,12 +13,10 @@ public class ScheduledTasks {
     @Autowired
     private SmarthomeService smart;
     @Scheduled(fixedRate = 5000)
-    public void reportCurrentTime() {
-        
-        
-       if(Double.parseDouble(smart.getDist())<50)
-          smart.switchTV(true);
+    public void action() {
+        if(Double.parseDouble(smart.getStatusSensor("DISTANCE"))<50)
+          smart.switchDevice("TV", true);
        else
-          smart.switchTV(false); 
+         smart.switchDevice("TV",false); 
     }
 }
