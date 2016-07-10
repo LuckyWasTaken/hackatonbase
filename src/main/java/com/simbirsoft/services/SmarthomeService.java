@@ -17,24 +17,24 @@ public class SmarthomeService {
 
     public String getRoomTemp()
     {
-        return this.getValue(Wrapp("ROOM_TEMPERATURE","sensors"));
+        return this.getValue("sensors", "ROOM_TEMPERATURE");
     }
 
     public String getDist()
     {
-        return this.getValue(Wrapp("DISTANCE","sensors"));
+        return this.getValue("sensors", "DISTANCE");
     }
-    
+
     public String getSmoke()
     {
-        return this.getValue(Wrapp("SMOKE","sensors"));
+        return this.getValue("sensors", "SMOKE");
     }
-    
+
     public String getNoise()
     {
-        return this.getValue(Wrapp("NOISE","sensors"));
+        return this.getValue("sensors", "NOISE");
     }
-    
+
     public boolean switchTV(boolean on)
     {
         this.setValue("TV", on);
@@ -43,13 +43,30 @@ public class SmarthomeService {
 
     public String getTVStatus()
     {
-        return this.getValue(Wrapp("TV","devices"));
+        return this.getValue("devices", "TV");
     }
 
-    private String getValue(String method)
+    public boolean switchDevice(String device, boolean status)
+    {
+        this.setValue(device, status);
+
+        return true;
+    }
+
+    public String getStatusDevice(String device)
+    {
+        return this.getValue("devices", device);
+    }
+
+    public String getStatusSensor(String sensor)
+    {
+        return this.getValue("sensors", sensor);
+    }
+
+    private String getValue(String method, String type)
     {
         URI targetUri = UriComponentsBuilder.fromHttpUrl(baseUrl)
-                .path(method)
+                .path(type + "/" +method)
                 //.queryParam("textLine", "My Param")
                 .build()
                 .toUri();
@@ -71,9 +88,5 @@ public class SmarthomeService {
         new RestTemplate().put(targetUri, String.class);
 
         return true;
-    }
-    public String Wrapp(String method,String wrapper)
-    {
-        return wrapper+"/"+method;
     }
 }
