@@ -63,10 +63,10 @@ public class SmarthomeService {
         return this.getValue("sensors", sensor);
     }
 
-    private String getValue(String method, String type)
+    private String getValue(String type, String method)
     {
         URI targetUri = UriComponentsBuilder.fromHttpUrl(baseUrl)
-                .path(type + "/" +method)
+                .path(type + "/" + method)
                 //.queryParam("textLine", "My Param")
                 .build()
                 .toUri();

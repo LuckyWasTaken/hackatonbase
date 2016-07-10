@@ -17,7 +17,7 @@ public class VentilationController {
     @RequestMapping(value = "/status", method = RequestMethod.GET)
     public String getTvStatus() {
 
-        return smart.getTVStatus();
+        return smart.getStatusDevice("VENTILATION");
     }
 
     @RequestMapping(value = "/on", method = RequestMethod.GET)
