@@ -17,9 +17,24 @@ public class SmarthomeService {
 
     public String getRoomTemp()
     {
-        return this.getValue("sensors/ROOM_TEMPERATURE");
+        return this.getValue(Wrapp("ROOM_TEMPERATURE","sensors"));
     }
 
+    public String getDist()
+    {
+        return this.getValue(Wrapp("DISTANCE","sensors"));
+    }
+    
+    public String getSmoke()
+    {
+        return this.getValue(Wrapp("SMOKE","sensors"));
+    }
+    
+    public String getNoise()
+    {
+        return this.getValue(Wrapp("NOISE","sensors"));
+    }
+    
     public boolean switchTV(boolean on)
     {
         this.setValue("TV", on);
@@ -28,7 +43,7 @@ public class SmarthomeService {
 
     public String getTVStatus()
     {
-        return this.getValue("devices/TV");
+        return this.getValue(Wrapp("TV","devices"));
     }
 
     private String getValue(String method)
@@ -57,5 +72,8 @@ public class SmarthomeService {
 
         return true;
     }
-
+    public String Wrapp(String method,String wrapper)
+    {
+        return wrapper+"/"+method;
+    }
 }
