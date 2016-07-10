@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Created by telik on 10.07.2016.
  */
+@RequestMapping(value = "/hv")
 public class HoooverController {
     @Autowired
     private SmarthomeService smart;
