@@ -18,6 +18,6 @@ public class ScheduledTasks {
         if(Double.parseDouble(smart.getStatusSensor("DISTANCE"))<50)
           smart.switchDevice("TV", true);
        else
-         smart.switchDevice("TV",false); 
+         smart.switchDevice("TV",false);
     }
 }
