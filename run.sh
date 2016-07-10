@@ -7,11 +7,23 @@ I=$(( I + 1));
 echo "$I"
 
 curl "http://localhost:8080/tv/on"
+curl "http://localhost:8080/vent/off"
 
-sleep 2
+sleep 1
 
 curl "http://localhost:8080/tv/off"
+curl "http://localhost:8080/vent/on"
 
-sleep 2
+sleep 1
+
+curl "http://localhost:8080/tv/off"
+curl "http://localhost:8080/vent/off"
+
+sleep 1
+
+curl "http://localhost:8080/tv/on"
+curl "http://localhost:8080/vent/on"
+
+sleep 1
 
 done 

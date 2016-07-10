@@ -13,7 +13,7 @@ public class ScheduledTasks {
     @Autowired
     private SmarthomeService smart;
     
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 10000)
     public void mainAction() {
         if(Double.parseDouble(smart.getStatusSensor("DISTANCE"))<50)
           smart.switchDevice("TV", true);
@@ -26,5 +26,24 @@ public class ScheduledTasks {
           smart.switchDevice("LOUDSPEAKERS", true);
        else
          smart.switchDevice("LOUDSPEAKERS",false); 
+        Double smoke = Double.parseDouble(smart.getStatusSensor("SMOKE"));
+        Double gaz_leak = Double.parseDouble(smart.getStatusSensor("GAZ_LEAK"));
+
+        if (Double.parseDouble(smart.getStatusSensor("DISTANCE")) < 50)
+            smart.switchDevice("TV", true);
+        else
+            smart.switchDevice("TV",false);
+
+        if (Double.parseDouble(smart.getStatusSensor("DISTANCE")) < 50)
+            smart.switchDevice("HOOVER", true);
+        else
+            smart.switchDevice("HOOVER", false);
+
+        if (smoke > 0 || gaz_leak > 0) {
+            smart.switchDevice("VENTILATION", true);
+        } else {
+            smart.switchDevice("VENTILATION",false);
+        }
+
     }
 }
