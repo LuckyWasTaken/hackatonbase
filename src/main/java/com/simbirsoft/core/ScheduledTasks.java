@@ -14,7 +14,6 @@ public class ScheduledTasks {
     
     @Scheduled(fixedRate = 5000)
     public void mainAction() {
-        System.out.println((smart.getStatusSensor("ELECTRICITY")));
         
         if (Double.parseDouble(smart.getStatusSensor("ELECTRICITY")) >= 12) {
             smart.restore();
@@ -49,11 +48,7 @@ public class ScheduledTasks {
             else
                 smart.switchDevice("FRIDGE", false);
 
-            if (detectflood()) {
-                smart.switchDevice("MICROWAVE", false);
-            } else {
-                smart.switchDevice("MICROWAVE", true);
-            }
+            
 
             actionOnFire();
         }
@@ -61,27 +56,34 @@ public class ScheduledTasks {
             smart.shutdown();
         }
     }
-     
-    private boolean actionOnFire(){
+    @Scheduled(fixedRate = 120000) 
+    public void actionOnFire(){
 
         boolean is_fire = (Double.parseDouble(smart.getStatusSensor("ROOM_TEMPERATURE"))>100)
                 &&(Double.parseDouble(smart.getStatusSensor("SMOKE"))>0);
 
         if (is_fire) {
             smart.callExternalService("FIRE_DEPARTMENT");
-
             smart.switchDevice("VENTILATION", true);
-
             smart.switchDevice("MICROWAVE", false);
             smart.switchDevice("TV",false);
             smart.switchDevice("HOOVER", false);
         }
 
-        return is_fire;
+        
     }
 
-    private boolean  detectflood(){
-        return (Double.parseDouble(smart.getStatusSensor("WATER_LEAK"))>1);
+    @Scheduled(fixedRate = 120000) 
+    public void actionOnFlood(){
+        boolean is_flood = (Double.parseDouble(smart.getStatusSensor("WATER_LEAK"))>0);
+        if (is_flood)
+        {
+            smart.callExternalService("PLUMBER");
+            smart.switchDevice("MICROWAVE", false);
+            smart.switchDevice("TV",false);
+            smart.switchDevice("HOOVER", false);
+        }
+        
 
     }
 }
