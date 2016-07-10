@@ -14,6 +14,7 @@ public class SmarthomeService {
 
     private static final String baseUrl = "http://smarthome.simbirsoft:8080/";
     private static final String microserviceId = "f9c2064d47a671a3d0c6dec0eec6a9b9";
+    
 
     public boolean switchDevice(String device, boolean status)
     {
