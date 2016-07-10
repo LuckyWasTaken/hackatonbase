@@ -28,7 +28,7 @@ public class ScheduledTasks {
         else
             smart.switchDevice("TV",false);
 
-        if (Double.parseDouble(smart.getStatusSensor("DISTANCE")) < 50)
+        if (Double.parseDouble(smart.getStatusSensor("DISTANCE")) > 500)
             smart.switchDevice("HOOVER", true);
         else
             smart.switchDevice("HOOVER", false);
