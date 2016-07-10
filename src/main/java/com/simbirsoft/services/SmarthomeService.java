@@ -24,6 +24,8 @@ public class SmarthomeService {
     
     public void restore() {
         offAllDevices = false;
+        this.switchDevice("FRIDGE", true);
+        this.switchDevice("MICROWAVE", true);
     }
     
     public void shutdown(){
