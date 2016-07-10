@@ -16,10 +16,11 @@ public class ScheduledTasks {
     @Scheduled(fixedRate = 10000)
     public void mainAction() {
         //Loudspeakers Controls
-        if(Double.parseDouble(smart.getStatusSensor("NOISE"))<50)
-          smart.switchDevice("LOUDSPEAKERS", true);
-       else
-         smart.switchDevice("LOUDSPEAKERS",false); 
+        if (Double.parseDouble(smart.getStatusSensor("NOISE")) < 50)
+            smart.switchDevice("LOUDSPEAKERS", true);
+        else
+            smart.switchDevice("LOUDSPEAKERS",false);
+
         Double smoke = Double.parseDouble(smart.getStatusSensor("SMOKE"));
         Double gaz_leak = Double.parseDouble(smart.getStatusSensor("GAZ_LEAK"));
 
