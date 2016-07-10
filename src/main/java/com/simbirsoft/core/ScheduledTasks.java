@@ -36,7 +36,6 @@ public class ScheduledTasks {
 
         if (smoke > 0 || gaz_leak > 0) {
             smart.switchDevice("VENTILATION", true);
-            smart.callExternalService("FIRE_DEPARTMENT");
 
         } else {
             smart.switchDevice("VENTILATION",false);
@@ -46,16 +45,33 @@ public class ScheduledTasks {
             smart.switchDevice("FRIDGE", true);
         else
             smart.switchDevice("FRIDGE", false);
-        
 
+        if (detectflood()) {
+            smart.switchDevice("MICROWAVE", false);
+        } else {
+            smart.switchDevice("MICROWAVE", true);
+        }
+
+        actionOnFire();
     }
      
-    private boolean detectFire(){
-        return (Double.parseDouble(smart.getStatusSensor("ROOM_TEMPERATURE"))>100)
+    private boolean actionOnFire(){
+
+        boolean is_fire = (Double.parseDouble(smart.getStatusSensor("ROOM_TEMPERATURE"))>100)
                 &&(Double.parseDouble(smart.getStatusSensor("SMOKE"))>0);
-                
+
+        if (is_fire) {
+            smart.callExternalService("FIRE_DEPARTMENT");
+
+            smart.switchDevice("VENTILATION", true);
+
+            smart.switchDevice("MICROWAVE", false);
+            smart.switchDevice("TV",false);
+            smart.switchDevice("HOOVER", false);
+        }
+
+        return is_fire;
     }
-    
 
     private boolean  detectflood(){
         return (Double.parseDouble(smart.getStatusSensor("WATER_LEAK"))>1);
