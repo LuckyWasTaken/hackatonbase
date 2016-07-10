@@ -47,7 +47,10 @@ public class ScheduledTasks {
         else
             smart.switchDevice("FRIDGE", false);
         
-
+        if(detectFire()||detectflood())
+            smart.switchDevice("MICROWAVE", false);
+        else
+            smart.switchDevice("MICROWAVE", true);
     }
      
     public boolean detectFire(){
