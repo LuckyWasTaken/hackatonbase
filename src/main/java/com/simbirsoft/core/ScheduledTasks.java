@@ -12,46 +12,54 @@ public class ScheduledTasks {
     @Autowired
     private SmarthomeService smart;
     
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 5000)
     public void mainAction() {
-        //Loudspeakers Controls
-        if (Double.parseDouble(smart.getStatusSensor("NOISE")) < 50)
-            smart.switchDevice("LOUDSPEAKERS", true);
-        else
-            smart.switchDevice("LOUDSPEAKERS",false);
-
-        Double smoke = Double.parseDouble(smart.getStatusSensor("SMOKE"));
-        Double gaz_leak = Double.parseDouble(smart.getStatusSensor("GAZ_LEAK"));
-
-        if (Double.parseDouble(smart.getStatusSensor("DISTANCE")) < 50)
-            smart.switchDevice("TV", true);
-        else
-            smart.switchDevice("TV",false);
-
-        if (Double.parseDouble(smart.getStatusSensor("DISTANCE")) > 500)
-            smart.switchDevice("HOOVER", true);
-        else
-            smart.switchDevice("HOOVER", false);
-
-        if (smoke > 0 || gaz_leak > 0) {
-            smart.switchDevice("VENTILATION", true);
-
-        } else {
-            smart.switchDevice("VENTILATION",false);
-        }
+        System.out.println((smart.getStatusSensor("ELECTRICITY")));
         
-        if (Double.parseDouble(smart.getStatusSensor("DISTANCE")) < 20000)
-            smart.switchDevice("FRIDGE", true);
-        else
-            smart.switchDevice("FRIDGE", false);
+        if (Double.parseDouble(smart.getStatusSensor("ELECTRICITY")) >= 12) {
+            smart.restore();
+            //Loudspeakers Controls
+            if (Double.parseDouble(smart.getStatusSensor("NOISE")) < 50)
+                smart.switchDevice("LOUDSPEAKERS", true);
+            else
+                smart.switchDevice("LOUDSPEAKERS",false);
 
-        if (detectflood()) {
-            smart.switchDevice("MICROWAVE", false);
-        } else {
-            smart.switchDevice("MICROWAVE", true);
+            Double smoke = Double.parseDouble(smart.getStatusSensor("SMOKE"));
+            Double gaz_leak = Double.parseDouble(smart.getStatusSensor("GAZ_LEAK"));
+
+            if (Double.parseDouble(smart.getStatusSensor("DISTANCE")) < 50)
+                smart.switchDevice("TV", true);
+            else
+                smart.switchDevice("TV",false);
+
+            if (Double.parseDouble(smart.getStatusSensor("DISTANCE")) > 500)
+                smart.switchDevice("HOOVER", true);
+            else
+                smart.switchDevice("HOOVER", false);
+
+            if (smoke > 0 || gaz_leak > 0) {
+                smart.switchDevice("VENTILATION", true);
+
+            } else {
+                smart.switchDevice("VENTILATION",false);
+            }
+        
+            if (Double.parseDouble(smart.getStatusSensor("DISTANCE")) < 20000)
+                smart.switchDevice("FRIDGE", true);
+            else
+                smart.switchDevice("FRIDGE", false);
+
+            if (detectflood()) {
+                smart.switchDevice("MICROWAVE", false);
+            } else {
+                smart.switchDevice("MICROWAVE", true);
+            }
+
+            actionOnFire();
         }
-
-        actionOnFire();
+        else {
+            smart.shutdown();
+        }
     }
      
     private boolean actionOnFire(){
