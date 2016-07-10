@@ -31,8 +31,9 @@ public class ScheduledTasks {
     public void checkSmoke() {
 
         Double smoke = Double.parseDouble(smart.getStatusSensor("SMOKE"));
+        Double gaz_leak = Double.parseDouble(smart.getStatusSensor("GAZ_LEAK"));
 
-        if (smoke > 1) {
+        if (smoke > 0 || gaz_leak > 0) {
             smart.switchDevice("VENTILATION", true);
 
         } else {
