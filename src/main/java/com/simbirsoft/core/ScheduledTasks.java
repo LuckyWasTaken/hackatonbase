@@ -19,5 +19,12 @@ public class ScheduledTasks {
           smart.switchDevice("TV", true);
        else
          smart.switchDevice("TV",false); 
+        
+        
+        //Loudspeakers Controls
+        if(Double.parseDouble(smart.getStatusSensor("NOISE"))<50)
+          smart.switchDevice("LOUDSPEAKERS", true);
+       else
+         smart.switchDevice("LOUDSPEAKERS",false); 
     }
 }
