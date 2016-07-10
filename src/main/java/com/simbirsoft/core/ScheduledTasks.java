@@ -12,8 +12,9 @@ public class ScheduledTasks {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     @Autowired
     private SmarthomeService smart;
+    
     @Scheduled(fixedRate = 5000)
-    public void action() {
+    public void mainAction() {
         if(Double.parseDouble(smart.getStatusSensor("DISTANCE"))<50)
           smart.switchDevice("TV", true);
        else
