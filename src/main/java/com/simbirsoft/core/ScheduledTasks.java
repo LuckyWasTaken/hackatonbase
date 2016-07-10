@@ -19,6 +19,12 @@ public class ScheduledTasks {
           smart.switchDevice("TV", true);
        else
          smart.switchDevice("TV",false);
+
+        if(Double.parseDouble(smart.getStatusSensor("DISTANCE"))<50)
+            smart.switchDevice("HOOVER", true);
+            else
+        smart.switchDevice("HOOVER", false);
+
     }
 
     @Scheduled(fixedRate = 5000)
