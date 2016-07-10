@@ -20,4 +20,21 @@ public class ScheduledTasks {
        else
          smart.switchDevice("TV",false);
     }
+
+    @Scheduled(fixedRate = 5000)
+    public void checkSmoke() {
+
+        Double smoke = Double.parseDouble(smart.getStatusSensor("SMOKE"));
+
+        if (smoke > 1) {
+            smart.switchDevice("VENTILATION", true);
+
+        } else {
+            smart.switchDevice("VENTILATION",false);
+        }
+
+        //if (smoke > 5) {
+            // alert
+        //}
+    }
 }
